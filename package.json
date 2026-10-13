@@ -1,0 +1,70 @@
+{
+	"name": "rehype-lini",
+	"version": "0.1.0",
+	"description": "rehype plugin that compiles ```lini code blocks to inline SVG at build time.",
+	"license": "MIT",
+	"homepage": "https://lini.rs",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/monfa-red/rehype-lini.git"
+	},
+	"bugs": "https://github.com/monfa-red/rehype-lini/issues",
+	"keywords": [
+		"rehype",
+		"rehype-plugin",
+		"unified",
+		"hast",
+		"mdx",
+		"docusaurus",
+		"diagram",
+		"diagrams-as-code",
+		"svg",
+		"lini"
+	],
+	"type": "module",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist",
+		"src",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"build": "tsc",
+		"prepack": "npm run build",
+		"test": "npm run build && node --test tests/pipeline.test.mjs",
+		"test:site": "npm pack && cd tests/site && npm install && npm install --no-save --strict-peer-deps ../../rehype-lini-*.tgz && npm run build && node verify.mjs build"
+	},
+	"dependencies": {
+		"@types/hast": "^3.0.5",
+		"hast-util-to-string": "^3.0.1",
+		"remark-lini-lang": "^0.2.0",
+		"unist-util-visit": "^5.1.0",
+		"vfile": "^6.0.3"
+	},
+	"devDependencies": {
+		"@mdx-js/mdx": "^3.1.1",
+		"@types/node": "^26.4.1",
+		"hast-util-from-html": "^2.0.3",
+		"hast-util-to-html": "^9.0.5",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0",
+		"rehype-parse": "^9.0.1",
+		"rehype-raw": "^7.0.0",
+		"rehype-stringify": "^10.0.0",
+		"remark-parse": "^11.0.0",
+		"remark-rehype": "^11.1.0",
+		"typescript": "^5.9.3",
+		"unified": "^11.0.5"
+	},
+	"engines": {
+		"node": ">=22.12.0"
+	}
+}
